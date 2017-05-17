@@ -1,3 +1,22 @@
+# LRU cache working:
+# Least Recently Used Cache, we keep adding elements to the cache
+# and when the cache is full we remove the least used node is removed
+# and the new value is added to the top
+
+# Used Doubly Liked List for managing most recently used element.
+# if the list is full the last element is removed from the end
+# and the new node is appended to the top, the DLL has a good
+# performance of removing and adding node to the end and front
+
+# we have also used the a dict for getting O(1) access of cache
+# elements
+
+# If we accessed the element from the cache then that element
+# is the recently accessed element so we need to move that
+# element to the front as most accessed element
+
+# Mutable Dict is a interface is used for inheritance
+# to add common methods of a dict object
 from collections import MutableMapping
 
 
@@ -83,18 +102,10 @@ class LRUCache(MutableMapping):
         else:
             node.previous.next = node.next
             node.next.previous = node.previous
+        self.size -= 1
 
     def __iter__(self):
         pass
 
     def __delitem__(self, key):
         pass
-
-
-cache = LRUCache(capacity=3)
-cache[1] = 'A'
-cache[2] = 'B'
-cache[4] = 'C'
-
-print cache[1]
-print len(cache)
