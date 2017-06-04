@@ -1,10 +1,10 @@
-import lrull
+from pythonlru.lrull import LRUCache
 
 
 class TestLru:
     def __init__(self):
         self.capacity = 3
-        self.cache = lrull.LRUCache(capacity=self.capacity)
+        self.cache = LRUCache(capacity=self.capacity)
 
     # the cache should be empty initially
     def test_check_empty(self):
